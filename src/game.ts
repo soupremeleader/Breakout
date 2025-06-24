@@ -39,8 +39,6 @@ class Game {
 
   private gameLoop() {
     this.paddle.update();
-    // this.block.update();
-
     this.ball.update();
 
     this.paddleCollision.collide();

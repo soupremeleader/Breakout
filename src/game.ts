@@ -3,6 +3,7 @@ import { Block } from "./classes/block";
 import { blockCollision } from "./classes/blockCollision";
 import { Paddle } from "./classes/paddle";
 import { PaddleCollision } from "./classes/paddleCollision";
+import { YellowBlock } from "./classes/yellowBlock";
 
 /**
  * The game class is the main class of the game. It creates all the objects and
@@ -24,7 +25,7 @@ class Game {
     let block: Block;
     for (let row = 0; row < rows; row++) {
       for (let column = 0; column < columns; column++) {
-        block = new Block(row, column, columns);
+        block = Math.random() < 0.2 ? new YellowBlock(row, column, columns) : new Block(row, column, columns);
         block.draw();
         this.blocks.push(block);
       }

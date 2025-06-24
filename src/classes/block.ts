@@ -5,6 +5,10 @@ export class Block extends HTMLElement {
   private _brickHeight: number = 32;
   private game: Element;
 
+  protected _row;
+  protected _column;
+  protected _columns;
+
   constructor(row: number, column: number, columns: number) {
     super();
     // plaats het grid met blokken in het midden van het scherm
@@ -20,6 +24,10 @@ export class Block extends HTMLElement {
 
     this._x = x;
     this._y = y;
+
+    this._row = row;
+    this._column = column;
+    this._columns = columns;
 
     console.log(`Place brick at (${x}, ${y})`);
   }
@@ -38,6 +46,18 @@ export class Block extends HTMLElement {
   
   public get brickHeight() {
     return this._brickHeight;
+  }
+  
+  public get row() {
+    return this._row;
+  }
+  
+  public get column() {
+    return this._column;
+  }
+  
+  public get columns() {
+    return this._columns;
   }
 
   public draw(): void {

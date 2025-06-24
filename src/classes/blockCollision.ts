@@ -1,6 +1,8 @@
 import { Ball } from "./ball";
 import { Block } from "./block";
 import { Collision } from "./collision";
+import { RedBlock } from "./redBlock";
+import { YellowBlock } from "./yellowBlock";
 export class blockCollision implements Collision {
   private blocks: Block[];
   private ball: Ball;
@@ -11,7 +13,7 @@ export class blockCollision implements Collision {
   }
 
   collide(): Block[] {
-    for (let i = 0; i < this.blocks.length; i++){
+    for (let i = 0; i < this.blocks.length; i++) {
       if (
         this.ball.x >= this.blocks[i].x - this.blocks[i].brickWidth / 2 &&
         this.ball.x <= this.blocks[i].x + this.blocks[i].brickWidth / 2 &&
@@ -20,7 +22,12 @@ export class blockCollision implements Collision {
       ) {
         this.ball.changeDirection();
         this.blocks[i].die();
-        this.blocks.splice(i, 1);
+        if (this.blocks[i] instanceof YellowBlock) {
+          this.blocks[i] = new RedBlock(this.blocks[i]);
+          this.blocks[i].draw();
+        } else {
+          this.blocks.splice(i, 1);
+        }
       }
     }
     return this.blocks;

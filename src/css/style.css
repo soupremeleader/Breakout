@@ -56,6 +56,11 @@ yellow-brick {
     background-image: url(/images/brick-yellow.png);
 }
 
+red-brick {
+    width:64px; height:32px;
+    background-image: url(/images/brick-red.png);
+}
+
 hold-upgrade {
     width:48px; height:46px;
     background-image: url(/images/upgrades/polygon_red.png);

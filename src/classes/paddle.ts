@@ -29,7 +29,6 @@ export class Paddle extends HTMLElement {
     }
 
     private onKeyDown(e: KeyboardEvent): void {
-        console.log('hello')
         if(e.key == "ArrowLeft")        this.moveLeft   = true
         else if (e.key == "ArrowRight") this.moveRight  = true
     }

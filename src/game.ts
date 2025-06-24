@@ -25,7 +25,7 @@ class Game {
     let block: Block;
     for (let row = 0; row < rows; row++) {
       for (let column = 0; column < columns; column++) {
-        block = Math.random() < 0.2 ? new YellowBlock(row, column, columns) : new Block(row, column, columns);
+        block = Math.random() <= 0.3 ? new YellowBlock(row, column, columns) : new Block(row, column, columns);
         block.draw();
         this.blocks.push(block);
       }

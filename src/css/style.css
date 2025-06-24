@@ -65,6 +65,7 @@ hold-upgrade {
     width:48px; height:46px;
     background-image: url(/images/upgrades/polygon_red.png);
 }
+
 faster-upgrade {
     width:48px; height:46px;
     background-image: url(/images/upgrades/polygon_blue.png);

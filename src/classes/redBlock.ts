@@ -1,4 +1,5 @@
 import { Block } from "./block";
+import { BlueUpgrade } from "./blueUpgrade";
 import { YellowBlock } from "./yellowBlock";
 
 export class RedBlock extends Block {

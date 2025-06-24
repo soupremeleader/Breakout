@@ -1,6 +1,8 @@
 import { Ball } from "./classes/ball";
 import { Block } from "./classes/block";
+import { blockCollision } from "./classes/blockCollision";
 import { Paddle } from "./classes/paddle";
+import { PaddleCollision } from "./classes/paddleCollision";
 
 /**
  * The game class is the main class of the game. It creates all the objects and
@@ -11,6 +13,8 @@ class Game {
   private paddle: Paddle;
   private blocks: Block[] = [];
   private ball: Ball;
+  private paddleCollision: PaddleCollision;
+  private blockCollsion: blockCollision;
 
   constructor() {
     this.paddle = new Paddle();
@@ -27,6 +31,9 @@ class Game {
     }
     this.ball = new Ball();
 
+    this.paddleCollision = new PaddleCollision(this.paddle, this.ball);
+    this.blockCollsion = new blockCollision(this.blocks, this.ball);
+
     this.gameLoop();
   }
 
@@ -36,18 +43,8 @@ class Game {
 
     this.ball.update();
 
-
-    for (const block of this.blocks) {
-      if (
-        this.ball.x >= block.x - block.brickWidth / 2 &&
-        this.ball.x <= block.x + block.brickWidth / 2 &&
-        this.ball.y >= block.y &&
-        this.ball.y <= block.y + block.brickHeight
-      ) {
-        this.ball.changeDirection();
-        block.die();
-      }
-    }
+    this.paddleCollision.collide();
+    this.blocks = this.blockCollsion.collide();
 
     requestAnimationFrame(() => this.gameLoop());
   }

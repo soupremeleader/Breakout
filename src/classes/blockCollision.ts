@@ -1,0 +1,28 @@
+import { Ball } from "./ball";
+import { Block } from "./block";
+import { Collision } from "./collision";
+export class blockCollision implements Collision {
+  private blocks: Block[];
+  private ball: Ball;
+
+  constructor(blocks: Block[], ball: Ball) {
+    this.blocks = blocks;
+    this.ball = ball;
+  }
+
+  collide(): Block[] {
+    for (let i = 0; i < this.blocks.length; i++){
+      if (
+        this.ball.x >= this.blocks[i].x - this.blocks[i].brickWidth / 2 &&
+        this.ball.x <= this.blocks[i].x + this.blocks[i].brickWidth / 2 &&
+        this.ball.y >= this.blocks[i].y &&
+        this.ball.y <= this.blocks[i].y + this.blocks[i].brickHeight
+      ) {
+        this.ball.changeDirection();
+        this.blocks[i].die();
+        this.blocks.splice(i, 1);
+      }
+    }
+    return this.blocks;
+  }
+}

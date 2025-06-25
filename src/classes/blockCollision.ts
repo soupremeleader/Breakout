@@ -25,6 +25,11 @@ export class blockCollision implements Collision {
         if (this.blocks[i] instanceof YellowBlock) {
           this.blocks[i] = new RedBlock(this.blocks[i]);
           this.blocks[i].draw();
+        } else if (this.blocks[i] instanceof RedBlock) {
+          let block: RedBlock = this.blocks[i];
+          let upgrade = block.upgrade;
+          upgrade.notAlive();
+          this.blocks.splice(i, 1);
         } else {
           this.blocks.splice(i, 1);
         }
